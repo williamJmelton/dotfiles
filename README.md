@@ -1,4 +1,4 @@
-# dotfiles
+# DotFiles 🏠 
 
 ## How to use
 To use these dotfiles:
