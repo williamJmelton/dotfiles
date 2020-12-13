@@ -1,22 +1,34 @@
 call plug#begin( stdpath('data') . '/plugged' )
+  " best autocompletion there is
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " awesome colorscheme
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'ayu-theme/ayu-vim'
+  " Highlights graphql code
   Plug 'jparise/vim-graphql'
+  " Language highlighting
   Plug 'pangloss/vim-javascript'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'leafgarland/typescript-vim'
-  Plug 'preservim/nerdtree'
-  Plug 'vim-airline/vim-airline'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  " File Tree
+  Plug 'preservim/nerdtree'
+  " Statusbar at the bottom of the editor
+  Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " Small utilities.
 	Plug 'mkitt/tabline.vim'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'adelarsq/vim-matchit'
-	Plug 'junegunn/fzf.vim'
 	Plug 'frazrepo/vim-rainbow'
 	Plug 'amiorin/vim-project'
   Plug 'kassio/neoterm'
+  " Startup screen for vim
+  " launch without directory for start screen
   Plug 'mhinz/vim-startify'
+
+  " Fuzzy finder of badassery
+	Plug 'junegunn/fzf.vim'
 call  plug#end()
 
 " Highlighting for FISH script
@@ -29,6 +41,7 @@ set rtp+=~/.vim/bundle/vim-project/
 call project#rc("~/Code")
   Project  '~/Code/DivNectar-Gatsby'               , 'DivNectar'
   Project  '~/Code/Clients/BigMike'               , 'BigMike'
+  Project  '~/Code/Desktop Apps/PrayerApp'               , 'PrayerApp'
 
 " Enable Good Indentation
 set autoindent
@@ -42,9 +55,14 @@ set shiftwidth=2
 filetype plugin indent on
 
 " --- COLOR ----
+set termguicolors     " enable true colors support
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 syntax on
-colorscheme dracula
-let g:airline_theme='onedark'
+"colorscheme dracula
+" let g:airline_theme='onedark'
 " Enable Rainbow Brackets
 let g:rainbow_active = 1
 " Enable colorful mode for JSX
@@ -68,7 +86,8 @@ set hidden
 map <C-n> :NERDTreeToggle<CR>
 
 " Search Files using FZF
-map <silent> ,,f :Files<CR>
+" Here we use GFiles to exclude files from gitignore
+map <silent> ,,f :GFiles<CR>
 map <silent> ,,p :Commands<CR>
 map <silent> ,,b :Buffers<CR>
 map <silent> ,,c :Colors<CR>
