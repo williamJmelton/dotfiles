@@ -16,7 +16,13 @@ call plug#begin( stdpath('data') . '/plugged' )
 	Plug 'frazrepo/vim-rainbow'
 	Plug 'amiorin/vim-project'
   Plug 'kassio/neoterm'
+  Plug 'mhinz/vim-startify'
 call  plug#end()
+
+" Highlighting for FISH script
+autocmd FileType fish compiler fish
+autocmd FileType fish setlocal textwidth=79
+autocmd FileType fish setlocal foldmethod=expr
 
 let g:project_use_nerdtree = 1
 set rtp+=~/.vim/bundle/vim-project/
@@ -45,7 +51,6 @@ let g:rainbow_active = 1
 let g:vim_jsx_pretty_colorful_config = 1
 
 " Start NERDTree on Boot
-autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " Close NERDTree if it's the last window
@@ -53,7 +58,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Expand nodes using l
 let NERDTreeMapActivateNode='<tab>'
 
-
+" Hide dem buffers
+set hidden
 
 " ----------------------
 "  ---CUSTOM MAPPINGS---
@@ -68,6 +74,9 @@ map <silent> ,,b :Buffers<CR>
 map <silent> ,,c :Colors<CR>
 map <silent> ,,t :Tags<CR>
 
+" Switch buffers
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
 
 " ----------------------
 "  ----- COC Settings --
